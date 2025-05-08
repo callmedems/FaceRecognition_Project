@@ -3,11 +3,8 @@ from cvzone.FaceDetectionModule import FaceDetector
 
 #import image
 capture = cv2.VideoCapture(0) 
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
-while True:
-    value,frame = capture.read()
-    cv2.imshow("Video", frame)
-    cv2.waitKey(1)
 
 #detect face in image
 
