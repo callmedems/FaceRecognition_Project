@@ -1,4 +1,5 @@
 import cv2
+from cvzone.FaceDetectionModule import FaceDetector
 #import image
 
 #detect face in image
