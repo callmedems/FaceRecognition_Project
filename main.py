@@ -3,6 +3,8 @@ import cv2
 
 #detect face in image
 
-#process and blur face in image
+#extract face location
+
+#blur face in image
 
 #save image with blurred face
