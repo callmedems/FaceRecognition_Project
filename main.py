@@ -1,6 +1,13 @@
 import cv2
 from cvzone.FaceDetectionModule import FaceDetector
+
 #import image
+capture = cv2.VideoCapture(0) 
+
+while True:
+    value,frame = capture.read()
+    cv2.imshow("Video", frame)
+    
 
 #detect face in image
 
