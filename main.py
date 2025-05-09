@@ -1,7 +1,6 @@
 import cv2
 
 #import image
-
 video = cv2.VideoCapture(0) #Sets 0 at camera ID
 video.set (3, 640) #set width
 video.set (4, 480) #set height
@@ -9,7 +8,6 @@ video.set (4, 480) #set height
 #Add haar cascade classifiers
 frontal_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 profile_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_profileface.xml')
-
 
 #Loop that initiates the camera
 while True:
@@ -26,16 +24,12 @@ while True:
 
     #Join both classifiers
     merge_faces=list(face_frontal) + list (face_profile)
-    
-    # Aplicar el desenfoque Gaussiano a cada rostro detectado
+
+    # Aplied gaussian blurr for every face detected
     for (x, y, w, h) in merge_faces:
         ROI = img[y:y+h, x:x+w]
         blur = cv2.GaussianBlur(ROI, (99, 99), 0)
         img[y:y+h, x:x+w] = blur
-
-    # Draw rectangle around detected face
-    for (x, y, w, h) in merge_faces:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     #Open camera
     cv2.imshow("Face blurring", img) #Pass image frame 
@@ -44,7 +38,7 @@ while True:
     if cv2.waitKey(1) & 0xFF==ord('q'): #Press q from the key board to close the program 
         break
 
-#
+#Release the window resources at close
 video.release()
 cv2.destroyAllWindows()
 
