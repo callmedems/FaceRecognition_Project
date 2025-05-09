@@ -29,6 +29,12 @@ with mp_detction.FaceDetection(min_detection_confidence=0.5, model_selection=0) 
             y1 = int(y1 * W)
             w = int(w * W)
             h = int(h * W)
+
+            capture = cv2.rectangle(capture, (x1, y1), (x1 + w, y1 + h), (0, 255, 0), 10)
+
+cv2.imshow('Face Detection', capture)
+cv2.waitKey(0)
+
 #extract face location
 
 #blur face in image
