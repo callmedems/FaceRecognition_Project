@@ -39,8 +39,14 @@ while True:
 
     # Aplied gaussian blurr for every face detected
     for (x, y, w, h) in merge_faces:
+
+        # Defines the submatrix of the region we want to blurr
         roi = img[y:y + h, x:x + w]
+
+        # Applies Gaussian blur to the "roi"
         blur = cv2.GaussianBlur(roi, (99, 99), 0)
+
+        # Replace the original face region with the blurr
         img[y:y + h, x: x + w] = blur
 
     #Open camera
