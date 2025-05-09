@@ -25,13 +25,13 @@ while True:
     face_frontal = frontal_cascade.detectMultiScale(
         img_gray, 
         scaleFactor=1.3, # Reduces the image
-        minNeighbors=4   # Defines the minimum number rectangles required to detect a face
+        minNeighbors=4   # Defines the number rectanglesnto detect a face
     )
 
     face_profile = profile_cascade.detectMultiScale(
         img_gray, 
         scaleFactor=1.3, # Reduces the image
-        minNeighbors=4  # Defines the minimum number rectangles required to detect a face
+        minNeighbors=4  # Defines the number rectangles to detect a face
     )
                                                                              
     # Join both classifiers
