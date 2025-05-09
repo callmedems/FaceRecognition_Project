@@ -26,17 +26,16 @@ while True:
 
     #Join both classifiers
     merge_faces=list(face_frontal) + list (face_profile)
-
+    
     # Aplicar el desenfoque Gaussiano a cada rostro detectado
     for (x, y, w, h) in merge_faces:
         ROI = img[y:y+h, x:x+w]
         blur = cv2.GaussianBlur(ROI, (99, 99), 0)
         img[y:y+h, x:x+w] = blur
 
-     # Draw rectangles around detected faces
+    # Draw rectangle around detected face
     for (x, y, w, h) in merge_faces:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
 
     #Open camera
     cv2.imshow("Face blurring", img) #Pass image frame 
