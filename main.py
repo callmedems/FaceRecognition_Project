@@ -23,21 +23,29 @@ while True:
     face_frontal=frontal_cascade.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=4)
 
     face_profile=profile_cascade.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=4)
+
     #Join both classifiers
     merge_faces=list(face_frontal) + list (face_profile)
+
+    # Aplicar el desenfoque Gaussiano a cada rostro detectado
+    for (x, y, w, h) in merge_faces:
+        ROI = img[y:y+h, x:x+w]
+        blur = cv2.GaussianBlur(ROI, (99, 99), 0)
+        img[y:y+h, x:x+w] = blur
+
+     # Draw rectangles around detected faces
+    for (x, y, w, h) in merge_faces:
+        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 
     #Open camera
     cv2.imshow("Face blurring", img) #Pass image frame 
 
     #Standart quote to close de camera
-
     if cv2.waitKey(1) & 0xFF==ord('q'): #Press q from the key board to close the program 
         break
 
-
+#
 video.release()
-
-
 cv2.destroyAllWindows()
 
