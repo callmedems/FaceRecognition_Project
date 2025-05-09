@@ -16,12 +16,28 @@ while True:
 
     capture, img=video.read()
 
+    #Converts image into grayscale  
+    img_gray=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
     #Detects faces on image
-    face_frontal=cv2.CascadeClassifier(frontal_cascade)
+    face_frontal=frontal_cascade.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=4)
 
-    face_profile=cv2.CascadeClassifier(profile_cascade)
+    face_profile=profile_cascade.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=4)
+    #Join both classifiers
+    merge_faces=list(face_frontal) + list (face_profile)
 
-    cv2.imshow("Image", img)
 
-    cv2.waitKey(1) #delay time
+    #Open camera
+    cv2.imshow("Face blurring", img) #Pass image frame 
+
+    #Standart quote to close de camera
+
+    if cv2.waitKey(1) & 0xFF==ord('q'): #Press q from the key board to close the program 
+        break
+
+
+video.release()
+
+
+cv2.destroyAllWindows()
 
